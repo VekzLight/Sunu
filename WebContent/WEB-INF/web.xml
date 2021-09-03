@@ -25,4 +25,14 @@
       <filter-name>PageFilter</filter-name>
       <url-pattern>/*</url-pattern>
   </filter-mapping>
+  <servlet>
+      <description></description>
+      <display-name>ProductoUpdate</display-name>
+      <servlet-name>ProductoUpdate</servlet-name>
+      <servlet-class>mx.uam.azc.dnasystem.sunu.controller.ProductoUpdateServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>ProductoUpdate</servlet-name>
+      <url-pattern>/ProductoUpdate</url-pattern>
+  </servlet-mapping>
 </web-app>
