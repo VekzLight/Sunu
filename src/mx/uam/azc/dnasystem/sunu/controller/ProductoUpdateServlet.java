@@ -1,9 +1,10 @@
 package mx.uam.azc.dnasystem.sunu.controller;
 
+import mx.uam.azc.dnasystem.sunu.data.ProductoDTO;
+
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,9 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 /**
  * Servlet implementation class ProductoUpdateServlet
@@ -58,10 +57,8 @@ public class ProductoUpdateServlet extends HttpServlet {
 
     private void updateProducto(HttpServletRequest request, HttpServletResponse response)
             throws NamingException, SQLException {
-        // leer parametros de forma
-        String idProducto = request.getParameter("id");
-        String nombreProducto = request.getParameter("nombre");
-
+        ProductoDTO producto = getProducto( request );
+        
         // Obtener conexion
         Context context = new InitialContext();
         DataSource source = (DataSource) context.lookup("java:comp/env/jdbc/TestDS");
@@ -69,20 +66,40 @@ public class ProductoUpdateServlet extends HttpServlet {
 
         try {
             // Ejecutar peticion
-          updateProducto(connection, idProducto, nombreProducto);
+          updateProducto(connection, producto);
         } finally {
             connection.close();
         }
     }
 
-    private void updateProducto(Connection connection, String idProducto, String nombreProducto)
+    /**
+     * @param request
+     * @return
+     */
+    private ProductoDTO getProducto( HttpServletRequest request )
+    {
+      // leer parametros de forma
+      String idProducto = request.getParameter("id");
+      String nombreProducto = request.getParameter("nombre");
+
+      // Crear DTO
+      ProductoDTO producto = new ProductoDTO();
+      producto.setId( idProducto );
+      producto.setNombre( nombreProducto );
+      return producto;
+    }
+
+    private void updateProducto(Connection connection, ProductoDTO producto)
           throws SQLException {
-        Statement statement = connection.createStatement();
+      
+        PreparedStatement statement = connection.prepareStatement("UPDATE "
+            + "producto SET nombre_producto=? WHERE id_producto=?;");
         try {
-            statement.executeUpdate("UPDATE producto SET nombre_producto=\"" 
-                + nombreProducto + "\"WHERE id_producto=\"" + idProducto + "\";");
+          statement.setString( 1, producto.getNombre() );
+          statement.setString( 2, producto.getId() );
+          statement.executeUpdate();
         } finally {
-            statement.close();
+          statement.close();
         }
     }
 
