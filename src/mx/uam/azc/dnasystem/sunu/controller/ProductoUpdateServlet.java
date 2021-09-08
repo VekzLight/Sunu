@@ -3,6 +3,7 @@ package mx.uam.azc.dnasystem.sunu.controller;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -49,9 +50,10 @@ public class ProductoUpdateServlet extends HttpServlet {
         } catch (Exception e) {
             throw new ServletException(e);
         }
-
+                  
         String base = request.getContextPath();
         response.sendRedirect(base + "/productos_update_form.jsp");
+
     }
 
     private void updateProducto(HttpServletRequest request, HttpServletResponse response)
