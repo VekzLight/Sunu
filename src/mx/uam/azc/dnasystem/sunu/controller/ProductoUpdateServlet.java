@@ -51,7 +51,7 @@ public class ProductoUpdateServlet extends HttpServlet {
         }
                   
         String base = request.getContextPath();
-        response.sendRedirect(base + "/productos_update_form.jsp");
+        response.sendRedirect(base + "/ProductoUpdateForm");
 
     }
 

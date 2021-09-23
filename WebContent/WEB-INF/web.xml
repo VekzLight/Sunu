@@ -35,4 +35,14 @@
       <servlet-name>ProductoUpdate</servlet-name>
       <url-pattern>/ProductoUpdate</url-pattern>
   </servlet-mapping>
+    <servlet>
+      <description></description>
+      <display-name>ProductoUpdateForm</display-name>
+      <servlet-name>ProductoUpdateForm</servlet-name>
+      <servlet-class>mx.uam.azc.dnasystem.sunu.controller.ProductoUpdateFormServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>ProductoUpdateForm</servlet-name>
+      <url-pattern>/ProductoUpdateForm</url-pattern>
+  </servlet-mapping>
 </web-app>
