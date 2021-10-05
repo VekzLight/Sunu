@@ -35,7 +35,7 @@
       <servlet-name>ProductoUpdate</servlet-name>
       <url-pattern>/ProductoUpdate</url-pattern>
   </servlet-mapping>
-    <servlet>
+  <servlet>
       <description></description>
       <display-name>ProductoUpdateForm</display-name>
       <servlet-name>ProductoUpdateForm</servlet-name>
@@ -44,5 +44,45 @@
   <servlet-mapping>
       <servlet-name>ProductoUpdateForm</servlet-name>
       <url-pattern>/ProductoUpdateForm</url-pattern>
+  </servlet-mapping>
+    <servlet>
+      <description></description>
+      <display-name>ClienteForm</display-name>
+      <servlet-name>ClienteForm</servlet-name>
+      <servlet-class>mx.uam.azc.dnasystem.sunu.controller.ClienteFormServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>ClienteForm</servlet-name>
+      <url-pattern>/ClienteForm</url-pattern>
+  </servlet-mapping>
+  <servlet>
+      <description></description>
+      <display-name>ClienteFormXls</display-name>
+      <servlet-name>ClienteFormXls</servlet-name>
+      <servlet-class>mx.uam.azc.dnasystem.sunu.controller.ClienteFormXlsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>ClienteFormXls</servlet-name>
+      <url-pattern>/ClienteFormXls</url-pattern>
+  </servlet-mapping>
+  <servlet>
+      <description></description>
+      <display-name>ClienteFormPdf</display-name>
+      <servlet-name>ClienteFormPdf</servlet-name>
+      <servlet-class>mx.uam.azc.dnasystem.sunu.controller.ClienteFormPdfServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>ClienteFormPdf</servlet-name>
+      <url-pattern>/ClienteFormPdf</url-pattern>
+  </servlet-mapping>
+  <servlet>
+      <description></description>
+      <display-name>ClienteFormHtml</display-name>
+      <servlet-name>ClienteFormHtml</servlet-name>
+      <servlet-class>mx.uam.azc.dnasystem.sunu.controller.ClienteFormHtmlServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>ClienteFormHtml</servlet-name>
+      <url-pattern>/ClienteFormHtml</url-pattern>
   </servlet-mapping>
 </web-app>

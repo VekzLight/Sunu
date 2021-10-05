@@ -32,13 +32,7 @@
         <c:if test="${param.pattern == null || pattern == ''}">
             <c:set var="pattern" value="%" />
         </c:if>
-        <%--
-            String pattern = request.getParameter("pattern");
-            if(pattern == null || pattern.equal(""))
-                pattern = "%";
-            pageContext.setAttribute("pattern", pattern);
-        --%>
-        
+
         <table border="1" cellpadding="10">
             <tr>
                 <td align="center">
@@ -72,6 +66,9 @@
                     <div class="label">Detalle</div>
                 </td>
                 <td align="center">
+                    <div class="label">HTML</div>
+                </td>
+                <td align="center">
                     <div class="label">PDF</div>
                 </td>
                 <td align="center">
@@ -91,12 +88,23 @@
                     <td align="center">
                         <input type="button"
                             value="  Ver  "
-                            onclick="window.location='cliente_view.jsp'" />
+                            onclick="window.location='ClienteForm?LLave=${ fila.id_cliente }'" />
                     </td>
-                    <td align="center"><input type="button"
-                        value="  Ver como PDF  "></td>
-                    <td align="center"><input type="button"
-                        value="  Ver como XML  "></td>
+                    <td align="center">
+                        <input  type="button"
+                                value="  Ver como HTML  "
+                                onclick="window.location='ClienteFormHtml?LLave=${fila.id_cliente}'" />
+                    </td>
+                    <td align="center">
+                        <input  type="button"
+                                value="  Ver como PDF  "
+                                onclick="window.location='ClienteFormPdf?LLave=${fila.id_cliente}'" />
+                    </td>
+                    <td align="center">
+                        <input  type="button"
+                                value="  Ver como XML  "
+                                onclick="window.location='ClienteFormXls?LLave=${fila.id_cliente}'" />
+                    </td>l
                 </tr>
             </c:forEach>
         </table>
