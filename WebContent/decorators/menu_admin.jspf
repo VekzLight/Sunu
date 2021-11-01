@@ -1,0 +1,23 @@
+<!-- 
+*************************************************
+* DNA System                                    *
+* Por imposible que parezca ¡Tiene Solución!    *
+*                                               *
+* José Enrique García Ramírez        2163033941 *
+* Tania Guadalupe Zárate Chávez      2173075371 *
+* Christopher Yael Meneses Martínez  2152001568 *
+* Hurtado Avilés Gabriel             2172000781 *
+*                                               *
+* Taller de desarrollo de aplicaciónes web      *
+* Hugo Pablo Leyva                              *
+* 13/Agosto/2021                                *
+*************************************************
+-->
+
+<div class="container-parent-menu-principal" >
+    <div class="container-btn-menu-principal" onclick="location.href='ProductoUpdateForm'"> <p class="link-menu" > Administar Productos</p></div>
+    <div class="container-btn-menu-principal" onclick="location.href='ClienteUpdateForm'"> <p class="link-menu" > Ver Clientes</p></div>
+    <div class="container-btn-menu-principal" onclick="location.href='AdminForm'"> <p class="link-menu" > Modificar Perfil</p></div>
+    <div class="container-btn-menu-principal" onclick="location.href='admin_password.jsp'"> <p class="link-menu" > Cambiar Contraseña</p></div>
+    <div class="container-btn-menu-principal" onclick="location.href='LogoutServlet'"> <p class="link-menu" > Salir</p> </div>
+</div>

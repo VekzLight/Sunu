@@ -1,33 +1,21 @@
-<table border="0" cellspacing="0" cellpadding=0 width="100%" >
-  <tr>
-    <td align="center" width="160">
-      <img src="<%=request.getContextPath()%>/img/DNASYSTEM.png"
-         height="54" width="158">
-    </td>
+<!-- 
+*************************************************
+* DNA System                                    *
+* Por imposible que parezca ¡Tiene Solución!    *
+*                                               *
+* José Enrique García Ramírez        2163033941 *
+* Tania Guadalupe Zárate Chávez      2173075371 *
+* Christopher Yael Meneses Martínez  2152001568 *
+* Hurtado Avilés Gabriel             2172000781 *
+*                                               *
+* Taller de desarrollo de aplicaciónes web      *
+* Hugo Pablo Leyva                              *
+* 13/Agosto/2021                                *
+*************************************************
+-->
 
-    <td width="15"></td>
-
-    <td align="center" valign="middle" width="625" height="40">
-      <h1 class="title">Sunu</h1>
-    </td>
-  </tr>
-
-  <tr>
-    <td colspan="2"></td>
-    <td align="center" class="toolbar">
-      <a href="http://www.instructores.azc.uam.mx">Principal</a>
-      | <a HREF="http://www.instructores.azc.uam.mx/mision.html">Misión</a>
-      | <a HREF="http://www.instructores.azc.uam.mx/vision.html">Visión</a>
-      | <a HREF="http://www.instructores.azc.uam.mx/casosexito.html">Casos de exito</a>
-      | <a HREF="http://www.instructores.azc.uam.mx/contacto.html">Contactanos</a>
-    </td>
-  </tr>
-
-  <tr>
-      <td colspan="2"></td>
-      <td align="center" valign="middle" width="625" height="10"><img
-        src="<%=request.getContextPath()%>/img/bar.png"
-        height="5" width="625"></td>
-  </tr>
-
-</table>
+<div class="container-parent-header">
+    <div class="container-chlid1-header"> <img class="logo" src="<%=request.getContextPath()%>/img/DNASystem.png"> </div>
+    <div class="container-chlid2-header"> <h1  class="title">SUNU</h1> </div>
+    <div class="container-chlid3-header"> <img class="logo" src="<%=request.getContextPath()%>/img/logoSunu.png"> </div>
+</div>

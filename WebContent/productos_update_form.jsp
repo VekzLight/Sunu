@@ -1,5 +1,23 @@
+<!-- 
+*************************************************
+* DNA System                                    *
+* Por imposible que parezca ¡Tiene Solución!    *
+*                                               *
+* José Enrique García Ramírez        2163033941 *
+* Tania Guadalupe Zárate Chávez      2173075371 *
+* Christopher Yael Meneses Martínez  2152001568 *
+* Hurtado Avilés Gabriel             2172000781 *
+*                                               *
+* Taller de desarrollo de aplicaciónes web      *
+* Hugo Pablo Leyva                              *
+* 13/Agosto/2021                                *
+*************************************************
+-->
+
+<%@ page contentType="text/html; charset=UTF-8" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
+
 <html>
   <head>
     <meta   http-equiv="content-type" 
@@ -12,84 +30,70 @@
     <meta   name="Author"
             content="DNA System">
     
-    <title>Cat�logo de Productos</title>
-    
-    <link rel="stylesheet" href="css/style.css">
+    <title>Catálogo de Productos</title>
   </head>
   <body>
-      <div class="step"> Cat�logo de Cat�logo de Productos </div>
-      <div class="instructions"> Actualiza los Campos que se
-        Requieran Modificar </div>
-      <br>
-      
-                    
-      <c:forEach var="producto" items="${ productos }">
-          <form method="post" action="${pageContext.request.contextPath}/ProductoUpdate">
-            <table width="100%">
-                <tr class="form">
-                    <td align="center">
-                      <div class="label"> Clave </div>
-                    </td>
-                    <td align="center">
-                      <div class="label"> Nombre </div>
-                    </td>
-                    <td></td>
-                </tr>
+    <div class="containe-parent-body">
+        <div class="containe-child1-body">
+            <%@ include file="decorators/menu_admin.jspf" %>
+        </div>
+        <div class="containe-child2-body">
+            <table class="table">
+              <thead>
                 <tr>
-                    <td align="center">${producto.id}
-                        <input 
-                            type="hidden" 
-                            name="id" 
-                            value="${ producto.id }">
-                    </td>
-                    <td align="center">
-                      <table border="0" cellpadding="0" cellspacing="0">
+                  <th scope="col">Imagen</th>
+                  <th scope="col">Nombre</th>
+                  <th scope="col">Precio</th>
+                  <th scope="col">Cantidad</th>
+                  <th scope="col">Modificar</th>
+                  <th scope="col">Borrar</th>
+                </tr>
+              </thead>
+              <tbody>
+                <c:forEach var="producto" items="${ productos }">
+                    <form method="post" action="${pageContext.request.contextPath}/ProductoUpdate">
+                        <input name="nombreCliente" value="${nombreCliente}" type="hidden"/>
+                        <c:if test="${producto.cantidad  > 0}">
+                          <input name="idProducto" value="${producto.id}" type="hidden"/>
                           <tr>
-                                <td>
-                                    <input 
-                                        size="20" 
-                                        name="nombre" 
-                                        value="${producto.nombre}">
-                                </td>
+                              <th scope="row">
+                                <img class="productos" src="<%=request.getContextPath()%>/img/productos/sunu${producto.id}.jpg">                        
+                              </th>
+                              <td> <input class="form-control" size="20" name="nombre" value="${producto.nombre}"></td>
+                              <td> <input class="form-control" size="20" name="precio" value="${producto.precio}"></td>
+                              <td> <input class="form-control" size="20" name="cantidad" value="${producto.cantidad}"></td>
+                              <td> <input class="btn btn-primary" name="send" value="Modificar" type="submit"> </td>
+                              <td> <input class="btn btn-primary" name="send" value="Borrar"    type="submit"> </td>
                           </tr>
-                      </table>
-                    </td>
-                    <td valign="bottom">
-                        <input value="  Modificar  " type="submit">
-                        <input value="  Borrar  " type="submit">
-                    </td>
-                </tr>
+                        </c:if>
+                    </form>
+                </c:forEach> 
+              </tbody>
             </table>
-          </form>
-      </c:forEach>
-              
-        <form method="post" action="${pageContext.request.contextPath}/productoUpdate">
-            <table width="100%">
-                <tr>
-                    <td align="center">
-                      <input size="50">
-                    </td>
-                    <td align="center">
-                      <table border="0" cellpadding="0" cellspacing="0">
+        </div>
+        
+        <div class="containe-child3-body">
+            <form method="post" action="${pageContext.request.contextPath}/ProductoInsert">
+                <table class="table">
+                    <thead>
                         <tr>
-                          <td>:</td>
-                          <td>
-                            <input size="20">
-                          </td>
-                        </tr>
-                      </table>
-                    </td>
-                    <td valign="bottom">
-                      <input value="  Agregar  " type="submit">
-                    </td>
-                </tr>
-            </table>
-
-            <br>
-    
-            <input value="  Regresar  " onclick="window.location='${pageContext.request.contextPath}/cliente_update_form.jsp'" type="button">
-
-        </form>
-      <br>
+                          <th scope="col">Nombre</th>
+                          <th scope="col">Precio</th>
+                          <th scope="col">Cantidad</th>
+                          <th scope="col">Agregar</th>
+                    </thead>
+                    <tbody>
+                        <input name="nombreCliente" value="${nombreCliente}" type="hidden"/>
+                          <tr>
+                              <td> <input class="form-control" size="20" name="nombre" ></td>
+                              <td> <input class="form-control" size="20" name="precio" ></td>
+                              <td> <input class="form-control" size="20" name="cantidad" ></td>
+                              <td> <input class="btn btn-primary" value="Añadir" type="submit"> </td>
+                          </tr>
+                        <br>
+                    </tbody>
+                </table>
+            </form>
+        </div>              
     </body>
 </html>

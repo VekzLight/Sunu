@@ -1,11 +1,26 @@
 package mx.uam.azc.dnasystem.sunu.controller;
 
+/**
+*************************************************
+* DNA System                                    *
+* Por imposible que parezca ¡Tiene Solución!    *
+*                                               *
+* José Enrique García Ramírez        2163033941 *
+* Tania Guadalupe Zárate Chávez      2173075371 *
+* Christopher Yael Meneses Martínez  2152001568 *
+* Hurtado Avilés Gabriel             2172000781 *
+*                                               *
+* Taller de desarrollo de aplicaciónes web      *
+* Hugo Pablo Leyva                              *
+* 13/Agosto/2021                                *
+*************************************************
+*/
+
 import java.io.IOException;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
 import mx.uam.azc.dnasystem.sunu.data.ClienteDTO;
+import mx.uam.azc.dnasystem.sunu.data.UsuarioDTO;
 
 import javax.naming.*;
 import javax.servlet.RequestDispatcher;
@@ -30,64 +45,71 @@ public class ClienteFormServlet extends HttpServlet {
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
-        int key = Integer.valueOf(request.getParameter("LLave")).intValue();
+        String usuario = request.getSession().getAttribute( "Usuario" ).toString();
         try {
-            List<ClienteDTO> clientes = getCliente(key);
-            request.setAttribute("clientes", clientes);
+            ClienteDTO cliente = getCliente(usuario);
+            request.setAttribute("cliente", cliente);
         } catch( Exception e ) { 
             throw new ServletException(e); 
         }
         
         RequestDispatcher dispatcher = request.getRequestDispatcher(""
-            + "/cliente_view.jsp");
+            + "/cliente_perfil.jsp");
         
         dispatcher.forward(request, response);
     }
 
-    private List<ClienteDTO> getCliente(int key) throws NamingException, SQLException{
+    private ClienteDTO getCliente(String usuario) throws NamingException, SQLException{
         Context  context =  new InitialContext();
         DataSource source = (DataSource) context.lookup("java:comp/env/jdbc/TestDS");
         
         Connection connection =  source.getConnection();
         try {
-            return getCliente(connection, key);
+            return getCliente(connection, usuario);
         } finally {
             connection.close();
         }
     }
 
-    private List<ClienteDTO> getCliente(Connection connection, int key) throws SQLException{
+    private ClienteDTO getCliente(Connection connection, String usuario) throws SQLException{
         Statement statement = connection.createStatement();
         
         String query = ""
             + "SELECT "
-            + " c.id_Cliente, "
-            + " c.nombre_Cliente,"
+            + " c.id_cliente, "
+            + " c.nombre_cliente,"
             + " c.apellido_paterno_cliente, "
             + " c.apellido_materno_cliente, "
             + " c.edad_cliente, "
-            + " s.sexo_cliente "
-            + "FROM cliente c, sexo s "
-            + "WHERE id_cliente=" + key
-                + " AND c.sexo_id_sexo=s.id_sexo;";
+            + " s.sexo_cliente, "
+            + " u.id_usuario, "
+            + " u.nombre_usuario, "
+            + " u.email "
+            + "FROM cliente c, sexo s, usuario u "
+            + "WHERE u.nombre_usuario=\"" + usuario+ "\""
+            + "  AND c.sexo_id_sexo=s.id_sexo "
+            + "  AND u.id_usuario=c.usuario_id_usuario;";
         
         ResultSet cursor =  statement.executeQuery(query);
         
         try {
-            List<ClienteDTO> clientes =  new ArrayList<ClienteDTO>();
-            while(cursor.next()) {
-                ClienteDTO cliente = new ClienteDTO();
+            cursor.next();
+            ClienteDTO cliente = new ClienteDTO();
+            UsuarioDTO usuario1 = new UsuarioDTO();
+            
+            cliente.setId(cursor.getInt(1));
+            cliente.setNombre(cursor.getString(2));
+            cliente.setPaterno(cursor.getString(3));
+            cliente.setMaterno(cursor.getString(4));
+            cliente.setEdad(cursor.getInt(5));
+            cliente.setSexo(cursor.getString(6));
+            
+            usuario1.setId_usuario( cursor.getInt( 7 ) );
+            usuario1.setNombre_usuario( cursor.getString( 8 ) );
+            usuario1.setEmail( cursor.getString( 9 ));
                 
-                cliente.setId(cursor.getInt(1));
-                cliente.setNombre(cursor.getString(2));
-                cliente.setPaterno(cursor.getString(3));
-                cliente.setMaterno(cursor.getString(4));
-                cliente.setEdad(cursor.getInt(5));
-                cliente.setSexo(cursor.getString(6));
-                
-                clientes.add(cliente);
-            }
-            return clientes;
+            cliente.setUsuario( usuario1 );
+            return cliente;
         } finally {
             cursor.close();
         }

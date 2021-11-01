@@ -1,4 +1,20 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- 
+*************************************************
+* DNA System                                    *
+* Por imposible que parezca ¡Tiene Solución!    *
+*                                               *
+* José Enrique García Ramírez        2163033941 *
+* Tania Guadalupe Zárate Chávez      2173075371 *
+* Christopher Yael Meneses Martínez  2152001568 *
+* Hurtado Avilés Gabriel             2172000781 *
+*                                               *
+* Taller de desarrollo de aplicaciónes web      *
+* Hugo Pablo Leyva                              *
+* 13/Agosto/2021                                *
+*************************************************
+-->
+
+<%@ page contentType="text/html; charset=UTF-8" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
 
@@ -14,106 +30,54 @@
     <meta   name="Author" 
             content="DNA System" />
     
-    <title>Forma de B�squeda de Cliente</title>
+    <title>Forma de Búsqueda de Cliente</title>
     
     <link   rel="stylesheet"
             href="${pageContext.request.contextPath}/css/style.css" />
 </head>
 <body>
-    <form   method="get"
-            action="${ pageContext.request.contextPath }/cliente_search.jsp">
-        
-        <div class="step">Forma de B�squeda de Cliente</div>
-        <div class="instructions">Proporciona la informaci�n de b�squeda solicitada</div>
-        
-        <br>
-        
-        <c:set var="pattern" value="${param.pattern}" />
-        <c:if test="${param.pattern == null || pattern == ''}">
-            <c:set var="pattern" value="%" />
-        </c:if>
-
-        <table border="1" cellpadding="10">
-            <tr>
-                <td align="center">
-                    <table>
-                        <tr class="form">
-                            <td align="right">
-                                <div class="label">Patr�n:</div>
-                            </td>
-                            <td><input name="pattern" size="10" value="${pattern}"></td>
-                            <td><input type="submit" value="  Buscar  "></td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
-        </table>
-        
-        <br>
-        
-        <table border="0" width="100%">
-            <tr class="form">
-                <td align="center">
-                    <div class="label">Nombre</div>
-                </td>
-                <td align="center">
-                    <div class="label">Paterno</div>
-                </td>
-                <td align="center">
-                    <div class="label">Materno</div>
-                </td>
-                <td align="center">
-                    <div class="label">Detalle</div>
-                </td>
-                <td align="center">
-                    <div class="label">HTML</div>
-                </td>
-                <td align="center">
-                    <div class="label">PDF</div>
-                </td>
-                <td align="center">
-                    <div class="label">XML</div>
-                </td>
-            </tr>
-            
-            <sql:query var="resultados" dataSource="jdbc/TestDS">
-                SELECT * FROM cliente WHERE apellido_paterno_cliente LIKE ? ORDER BY 3;
-                <sql:param value="${pattern}"/>
-            </sql:query>
-            <c:forEach var="fila" items="${ resultados.rows }">
-               <tr>
-                    <td align="center">${ fila.nombre_cliente }</td>
-                    <td align="center">${ fila.apellido_paterno_cliente }</td>
-                    <td align="center">${ fila.apellido_materno_cliente }</td>
-                    <td align="center">
-                        <input type="button"
-                            value="  Ver  "
-                            onclick="window.location='ClienteForm?LLave=${ fila.id_cliente }'" />
-                    </td>
-                    <td align="center">
-                        <input  type="button"
-                                value="  Ver como HTML  "
-                                onclick="window.location='ClienteFormHtml?LLave=${fila.id_cliente}'" />
-                    </td>
-                    <td align="center">
-                        <input  type="button"
-                                value="  Ver como PDF  "
-                                onclick="window.location='ClienteFormPdf?LLave=${fila.id_cliente}'" />
-                    </td>
-                    <td align="center">
-                        <input  type="button"
-                                value="  Ver como XML  "
-                                onclick="window.location='ClienteFormXls?LLave=${fila.id_cliente}'" />
-                    </td>l
-                </tr>
-            </c:forEach>
-        </table>
-        
-        <br>
-        
-        <input type="button" value="  Regresar  "
-            onclick="window.location='${ pageContext.request.contextPath }/main.jsp'">
-    </form>
-    <br>
+    
+    <div class="containe-parent-body2">
+        <div class="containe-child1-body">
+            <%@ include file="decorators/menu_admin.jspf" %>
+        </div>
+        <div class="containe-child2-body" >
+            <div style="margin: 20px;" align="right">
+                <p>Ver Informacion de todos los usuarios</p>
+                <input class="btn btn-primary" value="View" type="button" onclick="window.location='ClienteFormAllView'"> </td>
+                <input class="btn btn-primary" value="HTML" type="button" onclick="window.location='ClienteFormAllHtml'"> </td>
+                <input class="btn btn-primary" value="PDF"  type="button" onclick="window.location='ClienteFormAllPdf'"> </td>
+                <input class="btn btn-primary" value="XLS"  type="button" onclick="window.location='ClienteFormAllXls'"> </td>
+            </div>
+            </div>
+            <div class="containe-child3-body">
+                <table class="table">
+                <thead>
+                    <tr>
+                      <th scope="col">Nombre</th>
+                      <th scope="col">Paterno</th>
+                      <th scope="col">Materno</th>
+                      <th scope="col">View</th>
+                      <th scope="col">HTML</th>
+                      <th scope="col">PDF</th>
+                      <th scope="col">XLS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <c:forEach var="cliente" items="${ clientes }">
+                      <tr>
+                          <td> <input class="form-control" size="20" name="nombre" value="${cliente.nombre}"></td>
+                          <td> <input class="form-control" size="20" name="paterno" value="${cliente.paterno}"></td>
+                          <td> <input class="form-control" size="20" name="materno" value="${cliente.materno}"></td>
+                          <td> <input class="btn btn-primary" value="View" type="button" onclick="window.location='ClienteFormView?llave=${cliente.id}'"> </td>
+                          <td> <input class="btn btn-primary" value="HTML" type="button" onclick="window.location='ClienteFormHtml?llave=${cliente.id}'"> </td>
+                          <td> <input class="btn btn-primary" value="PDF"  type="button" onclick="window.location='ClienteFormPdf?llave=${cliente.id}'"> </td>
+                          <td> <input class="btn btn-primary" value="XLS"  type="button" onclick="window.location='ClienteFormXls?llave=${cliente.id}'"> </td>
+                      </tr>
+                    </c:forEach> 
+                </tbody>
+            </table>
+        </div>
+    </div>              
 </body>
 </html>

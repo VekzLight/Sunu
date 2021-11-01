@@ -1,5 +1,21 @@
 package mx.uam.azc.dnasystem.sunu.controller;
 
+/**
+*************************************************
+* DNA System                                    *
+* Por imposible que parezca ¡Tiene Solución!    *
+*                                               *
+* José Enrique García Ramírez        2163033941 *
+* Tania Guadalupe Zárate Chávez      2173075371 *
+* Christopher Yael Meneses Martínez  2152001568 *
+* Hurtado Avilés Gabriel             2172000781 *
+*                                               *
+* Taller de desarrollo de aplicaciónes web      *
+* Hugo Pablo Leyva                              *
+* 13/Agosto/2021                                *
+*************************************************
+*/
+
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
@@ -58,8 +74,7 @@ public class ProductoUpdateFormServlet extends HttpServlet {
     private List<ProductoDTO> getProducto(Connection connection) throws SQLException{
         Statement statement = connection.createStatement();
         
-        ResultSet cursor =  statement.executeQuery("SELECT id_producto, "
-            + "nombre_producto FROM producto;");
+        ResultSet cursor =  statement.executeQuery("SELECT * FROM producto;");
         
         try {
             List<ProductoDTO> productos =  new ArrayList<ProductoDTO>();
@@ -68,6 +83,8 @@ public class ProductoUpdateFormServlet extends HttpServlet {
                 
                 producto.setId(cursor.getString(1));
                 producto.setNombre(cursor.getString(2));
+                producto.setPrecio( cursor.getInt( 4 ) );
+                producto.setCantidad( cursor.getInt( 5 ) );
                 
                 productos.add(producto);
             }

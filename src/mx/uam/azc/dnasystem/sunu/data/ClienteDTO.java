@@ -1,7 +1,22 @@
-/**
- * Creado: Sep 7, 2021 7:54:25 PM
- */
 package mx.uam.azc.dnasystem.sunu.data;
+
+
+/**
+*************************************************
+* DNA System                                    *
+* Por imposible que parezca ¡Tiene Solución!    *
+*                                               *
+* José Enrique García Ramírez        2163033941 *
+* Tania Guadalupe Zárate Chávez      2173075371 *
+* Christopher Yael Meneses Martínez  2152001568 *
+* Hurtado Avilés Gabriel             2172000781 *
+*                                               *
+* Taller de desarrollo de aplicaciónes web      *
+* Hugo Pablo Leyva                              *
+* 13/Agosto/2021                                *
+*************************************************
+*/
+
 
 import java.io.Serializable;
 
@@ -19,6 +34,7 @@ public class ClienteDTO implements Serializable
   private String _paterno;
   private Integer edad;
   private String _sexo;
+  private UsuarioDTO _usuario;
   /**
    * @return the id
    */
@@ -102,6 +118,23 @@ public class ClienteDTO implements Serializable
   public void setSexo( String sexo )
   {
     _sexo = sexo;
+  }
+  
+  
+  
+  /**
+   * @return the usuario
+   */
+  public UsuarioDTO getUsuario()
+  {
+    return _usuario;
+  }
+  /**
+   * @param usuario the usuario to set
+   */
+  public void setUsuario( UsuarioDTO usuario )
+  {
+    _usuario = usuario;
   }
   /**
    * @return the serialversionuid

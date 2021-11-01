@@ -1,28 +1,37 @@
 package mx.uam.azc.dnasystem.sunu.controller;
 
-import java.awt.Color;
-import java.io.*;
-import java.sql.*;
-import java.util.*;
-import java.util.List;
-
-import net.sf.jxls.transformer.XLSTransformer;
+/**
+*************************************************
+* DNA System                                    *
+* Por imposible que parezca ¡Tiene Solución!    *
+*                                               *
+* José Enrique García Ramírez        2163033941 *
+* Tania Guadalupe Zárate Chávez      2173075371 *
+* Christopher Yael Meneses Martínez  2152001568 *
+* Hurtado Avilés Gabriel             2172000781 *
+*                                               *
+* Taller de desarrollo de aplicaciónes web      *
+* Hugo Pablo Leyva                              *
+* 13/Agosto/2021                                *
+*************************************************
+*/
 
 import mx.uam.azc.dnasystem.sunu.data.ClienteDTO;
+import mx.uam.azc.dnasystem.sunu.data.UsuarioDTO;
 
 import com.lowagie.text.*;
 import com.lowagie.text.html.HtmlWriter;
-import com.lowagie.text.pdf.PdfWriter;
-
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
 import javax.naming.*;
-import javax.servlet.*;
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
 import javax.sql.DataSource;
+
+import java.awt.Color;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.sql.*;
 
 /**
  * @author vekz
@@ -38,80 +47,87 @@ public class ClienteFormHtmlServlet extends HttpServlet {
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
-        int key = Integer.valueOf(request.getParameter("LLave")).intValue();
-        try {
-            List<ClienteDTO> clientes = getCliente(key, response);
-            request.setAttribute("clientes", clientes);
+      int key = Integer.valueOf(request.getParameter("llave")).intValue();  
+      try {
+            ClienteDTO cliente = getCliente(response,key);
+            request.setAttribute("clientes", cliente);
         } catch( Exception e ) { 
             throw new ServletException(e); 
         }
         
-        RequestDispatcher dispatcher = request.getRequestDispatcher(""
-            + "/cliente_search.jsp");
-        
+        //RequestDispatcher dispatcher = request.getRequestDispatcher("/cliente_search.jsp");
         //dispatcher.forward(request, response);
     }
 
-    private List<ClienteDTO> getCliente(int key, HttpServletResponse response) throws NamingException, SQLException, IOException, DocumentException{
+    private ClienteDTO getCliente(HttpServletResponse response, int key) throws NamingException, SQLException, IOException, DocumentException{
         Context  context =  new InitialContext();
         DataSource source = (DataSource) context.lookup("java:comp/env/jdbc/TestDS");
         
         Connection connection =  source.getConnection();
         try {
-            return getCliente(connection, key, response);
+            return getCliente(connection, response, key);
         } finally {
             connection.close();
         }
     }
 
-    private List<ClienteDTO> getCliente(Connection connection, int key, HttpServletResponse response) throws SQLException, IOException, DocumentException{
+    private ClienteDTO getCliente(Connection connection, HttpServletResponse response, int key) throws SQLException, IOException, DocumentException{
         Statement statement = connection.createStatement();
         
         String query = ""
             + "SELECT "
-            + " c.id_Cliente, "
-            + " c.nombre_Cliente,"
+            + " c.id_cliente, "
+            + " c.nombre_cliente,"
             + " c.apellido_paterno_cliente, "
             + " c.apellido_materno_cliente, "
             + " c.edad_cliente, "
-            + " s.sexo_cliente "
-            + "FROM cliente c, sexo s "
-            + "WHERE id_cliente=" + key
-                + " AND c.sexo_id_sexo=s.id_sexo;";
+            + " s.sexo_cliente, "
+            + " u.id_usuario, "
+            + " u.nombre_usuario, "
+            + " u.email "
+            + "FROM cliente c, sexo s, usuario u "
+            + "WHERE c.id_cliente=" + key + ""
+            + "  AND c.sexo_id_sexo=s.id_sexo "
+            + "  AND u.id_usuario=c.usuario_id_usuario;";
         
         ResultSet cursor =  statement.executeQuery(query);
         
         try {
-            List<ClienteDTO> clientes =  new ArrayList<ClienteDTO>();
+            cursor.next();
+            ClienteDTO cliente = new ClienteDTO();
+            UsuarioDTO usuario = new UsuarioDTO();
             
-            while(cursor.next()) {
-                ClienteDTO cliente = new ClienteDTO();
-                
-                cliente.setId(cursor.getInt(1));
-                cliente.setNombre(cursor.getString(2));
-                cliente.setPaterno(cursor.getString(3));
-                cliente.setMaterno(cursor.getString(4));
-                cliente.setEdad(cursor.getInt(5));
-                cliente.setSexo(cursor.getString(6));
-                
-                clientes.add(cliente);
-            }
+            cliente.setId(cursor.getInt(1));
+            cliente.setNombre(cursor.getString(2));
+            cliente.setPaterno(cursor.getString(3));
+            cliente.setMaterno(cursor.getString(4));
+            cliente.setEdad(cursor.getInt(5));
             
-            documentShow(clientes, response, key);
+            String sexo = cursor.getString(6).equalsIgnoreCase("F") ? "Femenino" : "Masculino";
+            
+            cliente.setSexo(sexo);
+            
+            usuario.setId_usuario( cursor.getInt( 7 ) );
+            usuario.setNombre_usuario( cursor.getString( 8 ) );
+            usuario.setEmail( cursor.getString( 9 ));
+                
+            cliente.setUsuario( usuario );
+       
+            documentShow(cliente, response);
             System.out.println("Documento creado");
             
-            return clientes;
+            return cliente;
         } finally {
             cursor.close();
         }
     }
 
-    private void documentShow( List<ClienteDTO> clientes,
-        HttpServletResponse response, int key ) 
+    private void documentShow( ClienteDTO cliente,
+        HttpServletResponse response ) 
     {
       try {
         response.setContentType("application/html");
-        response.addHeader( "Content-Disposition", "attachment;filename=ReporteCliente"+key+".html" );
+        response.addHeader( "Content-Disposition", "attachment;filename=ReporteClientes.html" );
         OutputStream fos = response.getOutputStream();
         Document document = new Document( PageSize.LETTER.rotate() );
         HtmlWriter writer = HtmlWriter.getInstance( document, fos );
@@ -147,6 +163,8 @@ public class ClienteFormHtmlServlet extends HttpServlet {
         tabla.setSpacing( 5 );
         
         font = FontFactory.getFont( FontFactory.COURIER, 8, Font.BOLD, new Color(64, 64, 255));
+        phrase = new Phrase("Id_Cliente", font);
+        tabla.addCell( phrase );
         phrase = new Phrase("Nombre", font);
         tabla.addCell( phrase );
         phrase = new Phrase("Paterno", font);
@@ -161,28 +179,56 @@ public class ClienteFormHtmlServlet extends HttpServlet {
         
         tabla = new Table(8);
         font = FontFactory.getFont( FontFactory.COURIER, 8, Font.BOLD, new Color(0, 128, 0));
+        phrase = new Phrase(cliente.getId()+"", font);
+        tabla.addCell( phrase );
+        phrase = new Phrase(cliente.getNombre(), font);
+        tabla.addCell( phrase );
+        phrase = new Phrase(cliente.getPaterno(), font);
+        tabla.addCell( phrase );
+        phrase = new Phrase(cliente.getMaterno(), font);
+        tabla.addCell( phrase );
+        phrase = new Phrase(cliente.getEdad()+"", font);
+        tabla.addCell( phrase );
+        phrase = new Phrase(cliente.getSexo(), font);
+        tabla.addCell( phrase );
+        document.add( tabla );
         
-        for(ClienteDTO cliente: clientes) {
-          phrase = new Phrase(cliente.getNombre(), font);
-          tabla.addCell( phrase );
-          phrase = new Phrase(cliente.getPaterno(), font);
-          tabla.addCell( phrase );
-          phrase = new Phrase(cliente.getMaterno(), font);
-          tabla.addCell( phrase );
-          phrase = new Phrase(cliente.getEdad()+"", font);
-          tabla.addCell( phrase );
-          phrase = new Phrase(cliente.getSexo(), font);
-          tabla.addCell( phrase );
-        }
+        
+        
+        tabla = new Table(8);
+        tabla.setBorderWidth( 3 );
+        tabla.setBorderColor( new Color(0, 0, 255) );
+        tabla.setBackgroundColor( new Color(226, 222, 222) );
+        tabla.setPadding( 5 );
+        tabla.setSpacing( 5 );
+        
+        font = FontFactory.getFont( FontFactory.COURIER, 8, Font.BOLD, new Color(64, 64, 255));
+        phrase = new Phrase("Id_Usuarui", font);
+        tabla.addCell( phrase );
+        phrase = new Phrase("Usuario", font);
+        tabla.addCell( phrase );
+        phrase = new Phrase("Email", font);
+        tabla.addCell( phrase );
+        phrase = new Phrase("Materno", font);
+        tabla.addCell( phrase );
+        document.add( tabla );
+        
+        tabla = new Table(8);
+        font = FontFactory.getFont( FontFactory.COURIER, 8, Font.BOLD, new Color(0, 128, 0));
+      
+        phrase = new Phrase(cliente.getUsuario().getId_usuario() + "", font);
+        tabla.addCell( phrase );
+        phrase = new Phrase(cliente.getUsuario().getNombre_usuario(), font);
+        tabla.addCell( phrase );
+        phrase = new Phrase(cliente.getUsuario().getEmail(), font);
+        tabla.addCell( phrase );
         document.add( tabla );
         
         fos.flush();
         document.close();
       } catch ( BadElementException e ) {
-        // TODO Auto-generated catch block
         e.printStackTrace();
       } catch ( DocumentException e ) {
-        // TODO Auto-generated catch block
         e.printStackTrace();
       } catch(IOException ex) {
         ex.printStackTrace();

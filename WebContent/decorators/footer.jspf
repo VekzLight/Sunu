@@ -1,26 +1,23 @@
-<table border="0" width="100%">
-  <tr>
-    <td rowspan="3" width="175" height="21"></td>
+<!-- 
+*************************************************
+* DNA System                                    *
+* Por imposible que parezca ¡Tiene Solución!    *
+*                                               *
+* José Enrique García Ramírez        2163033941 *
+* Tania Guadalupe Zárate Chávez      2173075371 *
+* Christopher Yael Meneses Martínez  2152001568 *
+* Hurtado Avilés Gabriel             2172000781 *
+*                                               *
+* Taller de desarrollo de aplicaciónes web      *
+* Hugo Pablo Leyva                              *
+* 13/Agosto/2021                                *
+*************************************************
+-->
 
-    <td align="center" width="625" height="5"><img
-        src="<%=request.getContextPath()%>/img/bar.png"
-        height="5" width="625"></td>
-  </tr>
-
-  <tr>
-    <td align="center" class="toolbar">
-      <a href="http://www.instructores.azc.uam.mx">Principal</a>
-      | <a HREF="http://www.instructores.azc.uam.mx/mision.html">Misión</a>
-      | <a HREF="http://www.instructores.azc.uam.mx/vision.html">Visión</a>
-      | <a HREF="http://www.instructores.azc.uam.mx/casosexito.html">Casos de exito</a>
-      | <a HREF="http://www.instructores.azc.uam.mx/contacto.html">Contactanos</a>
-    </td>
-  </tr>
-
-  <tr>
-    <td class="legal">
-      <br>Copyright (c) HPL 2017
-      <br>Derechos Reservados
-    </td>
-  </tr>
-</table>
+<div class="container-parent-footer">
+    <div class="container-child1-footer"> <a class="link-footer">(c)2021, DNA System</a> </div>
+    <div class="container-child2-footer"> </div>
+    <div class="container-child3-footer"> <a class="link-footer">Preguntas Frecuentes</a>  </div>
+    <div class="container-child4-footer"> <a class="link-footer">Terminos y condiciones</a>  </div>
+    <div class="container-child5-footer"> <a class="link-footer">Aviso de Privacidad</a>  </div>
+</div>

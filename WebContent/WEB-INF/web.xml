@@ -85,4 +85,185 @@
       <servlet-name>ClienteFormHtml</servlet-name>
       <url-pattern>/ClienteFormHtml</url-pattern>
   </servlet-mapping>
+  <servlet>
+      <description></description>
+      <display-name>RegisterServlet</display-name>
+      <servlet-name>RegisterServlet</servlet-name>
+      <servlet-class>mx.uam.azc.dnasystem.sunu.controller.RegisterServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>RegisterServlet</servlet-name>
+      <url-pattern>/RegisterServlet</url-pattern>
+  </servlet-mapping>
+    
+  <servlet>
+      <description></description>
+      <display-name>LoginServlet</display-name>
+      <servlet-name>LoginServlet</servlet-name>
+      <servlet-class>mx.uam.azc.dnasystem.sunu.controller.LoginServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>LoginServlet</servlet-name>
+      <url-pattern>/LoginServlet</url-pattern>
+  </servlet-mapping>
+    
+  <servlet>
+      <description></description>
+      <display-name>LogoutServlet</display-name>
+      <servlet-name>LogoutServlet</servlet-name>
+      <servlet-class>mx.uam.azc.dnasystem.sunu.controller.LogoutServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>LogoutServlet</servlet-name>
+      <url-pattern>/LogoutServlet</url-pattern>
+  </servlet-mapping>
+    <servlet>
+      <description></description>
+      <display-name>ProductoSelectForm</display-name>
+      <servlet-name>ProductoSelectForm</servlet-name>
+      <servlet-class>mx.uam.azc.dnasystem.sunu.controller.ProductoSelectFormServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>ProductoSelectForm</servlet-name>
+      <url-pattern>/ProductoSelectForm</url-pattern>
+  </servlet-mapping>
+  <servlet>
+      <description></description>
+      <display-name>ClienteUpdate</display-name>
+      <servlet-name>ClienteUpdate</servlet-name>
+      <servlet-class>mx.uam.azc.dnasystem.sunu.controller.ClienteUpdateServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>ClienteUpdate</servlet-name>
+      <url-pattern>/ClienteUpdate</url-pattern>
+  </servlet-mapping>
+  <servlet>
+      <description></description>
+      <display-name>ProductoSelectClienteForm</display-name>
+      <servlet-name>ProductoSelectClienteForm</servlet-name>
+      <servlet-class>mx.uam.azc.dnasystem.sunu.controller.ProductoSelectClienteFormServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>ProductoSelectClienteForm</servlet-name>
+      <url-pattern>/ProductoSelectClienteForm</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+      <description></description>
+      <display-name>ClienteUpdatePwd</display-name>
+      <servlet-name>ClienteUpdatePwd</servlet-name>
+      <servlet-class>mx.uam.azc.dnasystem.sunu.controller.ClienteUpdatePwdServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>ClienteUpdatePwd</servlet-name>
+      <url-pattern>/ClienteUpdatePwd</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+      <description></description>
+      <display-name>ProductoDelete</display-name>
+      <servlet-name>ProductoDelete</servlet-name>
+      <servlet-class>mx.uam.azc.dnasystem.sunu.controller.ProductoDeleteServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>ProductoDelete</servlet-name>
+      <url-pattern>/ProductoDelete</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+      <description></description>
+      <display-name>ProductoInsert</display-name>
+      <servlet-name>ProductoInsert</servlet-name>
+      <servlet-class>mx.uam.azc.dnasystem.sunu.controller.ProductoInsertServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>ProductoInsert</servlet-name>
+      <url-pattern>/ProductoInsert</url-pattern>
+  </servlet-mapping>
+
+   <servlet>
+      <description></description>
+      <display-name>ClienteUpdateForm</display-name>
+      <servlet-name>ClienteUpdateForm</servlet-name>
+      <servlet-class>mx.uam.azc.dnasystem.sunu.controller.ClienteUpdateFormServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>ClienteUpdateForm</servlet-name>
+      <url-pattern>/ClienteUpdateForm</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+      <description></description>
+      <display-name>ClienteFormView</display-name>
+      <servlet-name>ClienteFormView</servlet-name>
+      <servlet-class>mx.uam.azc.dnasystem.sunu.controller.ClienteFormViewServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>ClienteFormView</servlet-name>
+      <url-pattern>/ClienteFormView</url-pattern>
+  </servlet-mapping>
+  
+    <servlet>
+      <description></description>
+      <display-name>ClienteFormAllView</display-name>
+      <servlet-name>ClienteFormAllView</servlet-name>
+      <servlet-class>mx.uam.azc.dnasystem.sunu.controller.ClienteFormAllViewServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>ClienteFormAllView</servlet-name>
+      <url-pattern>/ClienteFormAllView</url-pattern>
+  </servlet-mapping>
+  
+      <servlet>
+      <description></description>
+      <display-name>ClienteFormAllHtml</display-name>
+      <servlet-name>ClienteFormAllHtml</servlet-name>
+      <servlet-class>mx.uam.azc.dnasystem.sunu.controller.ClienteFormAllHtmlServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>ClienteFormAllHtml</servlet-name>
+      <url-pattern>/ClienteFormAllHtml</url-pattern>
+  </servlet-mapping>
+        <servlet>
+      <description></description>
+      <display-name>ClienteFormAllPdf</display-name>
+      <servlet-name>ClienteFormAllPdf</servlet-name>
+      <servlet-class>mx.uam.azc.dnasystem.sunu.controller.ClienteFormAllPdfServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>ClienteFormAllPdf</servlet-name>
+      <url-pattern>/ClienteFormAllPdf</url-pattern>
+  </servlet-mapping>
+<servlet>
+      <description></description>
+      <display-name>ClienteFormAllXls</display-name>
+      <servlet-name>ClienteFormAllXls</servlet-name>
+      <servlet-class>mx.uam.azc.dnasystem.sunu.controller.ClienteFormAllXlsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>ClienteFormAllXls</servlet-name>
+      <url-pattern>/ClienteFormAllXls</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+      <description></description>
+      <display-name>AdminForm</display-name>
+      <servlet-name>AdminForm</servlet-name>
+      <servlet-class>mx.uam.azc.dnasystem.sunu.controller.AdminFormServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>AdminForm</servlet-name>
+      <url-pattern>/AdminForm</url-pattern>
+  </servlet-mapping>
+  
+<servlet>
+      <description></description>
+      <display-name>AdminUpdatePwd</display-name>
+      <servlet-name>AdminUpdatePwd</servlet-name>
+      <servlet-class>mx.uam.azc.dnasystem.sunu.controller.AdminUpdatePwdServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>AdminUpdatePwd</servlet-name>
+      <url-pattern>/AdminUpdatePwd</url-pattern>
+  </servlet-mapping>
 </web-app>

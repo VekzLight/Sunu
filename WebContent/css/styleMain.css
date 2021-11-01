@@ -1,0 +1,383 @@
+/* 
+*************************************************
+* DNA System                                    *
+* Por imposible que parezca ¡Tiene Solución!    *
+*                                               *
+* José Enrique García Ramírez        2163033941 *
+* Tania Guadalupe Zárate Chávez      2173075371 *
+* Christopher Yael Meneses Martínez  2152001568 *
+* Hurtado Avilés Gabriel             2172000781 *
+*                                               *
+* Taller de desarrollo de aplicaciónes web      *
+* Hugo Pablo Leyva                              *
+* 13/Agosto/2021                                *
+*************************************************
+*/
+
+*{
+  padding: 0px;
+  margin: 0px;
+  border: none;
+}
+
+body {
+  font-family: Helvetica,sans-serif;
+}
+
+
+.don{ height: 250px; }
+
+.table{
+    margin-left: 2.5%;
+    width: 95%;
+    background-color: transparent;
+}
+
+.container-productos-cliente {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.container-productos{
+    padding: 10px;
+}
+
+.productos{
+    height: 100px;
+    padding-bottom: 5px;
+}
+
+.productos:hover{
+    cursor: pointer;
+}
+
+/* Contenedor principal */
+.container-parent-main {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 100px auto 100px;
+    grid-auto-rows: 200px;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    
+    justify-items: center;
+    align-items: center;
+    
+    height: 100%;
+    width: 100%;
+}
+
+.container-chlid1-main { 
+    height: 100%; width: 100%; 
+    
+    background: #54DFDF;
+    background: -moz-linear-gradient(left, #54DFDF 0%, #FFFFFF 20%, #F2C383 100%);
+    background: -webkit-linear-gradient(left, #54DFDF 0%, #FFFFFF 20%, #F2C383 100%);
+    background: linear-gradient(to right, #54DFDF 0%, #FFFFFF 20%, #F2C383 100%);
+    
+    border-bottom: 2px inset rgba(0,0,0,0.69);
+    border-radius: 0px 0px 1px 1px;    
+}
+.container-chlid2-main {
+    background: #FFFFFF;
+    background: -moz-linear-gradient(left, #FFFFFF 20%, #F2C383 100%);
+    background: -webkit-linear-gradient(left, #FFFFFF 20%, #F2C383 100%);
+    background: linear-gradient(to right, #FFFFFF 20%, #F2C383 100%);
+    height: 100%; width: 100%; 
+
+}
+.container-chlid3-main { color: #FFFFFF; height: 100%; width: 100%; background-color: #000000;}
+
+.title{
+    -webkit-text-stroke: 1px black;
+    color: transparent;
+    font-size: 40px;
+    letter-spacing: 2px;
+    word-spacing: 2px;
+    color: #FFFFFF;
+    font-weight: 700;
+    text-decoration: none;
+    font-style: normal;
+    font-variant: small-caps;
+    text-transform: uppercase;
+}
+/***************************/
+
+
+/* Contenedor header */
+.container-parent-header {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    
+    background-color: rgba(0,0,0,0.5);
+    
+    justify-items: center;
+    align-items: center;
+}
+
+.container-chlid1-header { height: 100%; width: 100%; grid-area: 1 / 1 / 2 / 2; }
+.container-chlid2-header { height: 100%; width: 100%; grid-area: 1 / 2 / 2 / 5; }
+.container-chlid3-header { height: 100%; width: 100%; grid-area: 1 / 5 / 2 / 6; }
+
+.logo { height: 100px; width: 100%; }
+.title{ margin-top: 25px; color: white; text-align: center; }
+/***************************/
+
+
+/* Contenedor menu */
+.container-parent-menu-principal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-btn-menu-principal {
+    display: flex;
+    height: 50px;
+    width: 100%;
+    margin-top: 10px;
+    border: 1px double rgba(45,165,193,0.69);
+    border-radius: 0px 10px 10px 0px;
+    justify-content: center;
+    align-items: center;
+    
+    color: white;
+    background-color: rgba(0,0,0,.5);
+    
+    transition: .2s
+}
+
+.container-btn-menu-principal:hover{
+    cursor: pointer;
+    border-radius: 50px;
+    
+    color: black;
+    background-color: rgba(255,255,255,.5);
+}
+
+/***************************/
+
+
+/* Contenedor footer */
+.container-parent-footer {
+    color: white;
+    background-color: black;
+    display: grid;
+    grid-template-columns: 200px repeat(4, 20%);
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    
+    height: 100px; width: 100%;
+    
+    justify-items: center;
+    align-items: center;
+}
+
+.container-chlid1-footer { height: 100px; width: 100%; grid-area: 1 / 1 / 2 / 2; }
+.container-chlid2-footer { grid-area: 1 / 2 / 2 / 3; }
+.container-chlid3-footer { grid-area: 1 / 3 / 2 / 4; }
+.container-chlid4-footer { grid-area: 1 / 4 / 2 / 5; }
+.container-chlid5-footer { grid-area: 1 / 5 / 2 / 6; }
+
+.link-footer{
+    width: 100%;
+    color: white;
+}
+/***************************/
+
+
+/*  Contenedor body */
+.containe-parent-body {
+    display: grid;
+    grid-template-columns: 200px repeat(4, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    
+    height: 100%; width: 100%;
+    
+    justify-items: center;
+    align-items: center;
+}
+
+.containe-child1-body { 
+    background: #54DFDF;
+    background: -moz-linear-gradient(left, #54DFDF 0%, #FFFFFF 100%);
+    background: -webkit-linear-gradient(left, #54DFDF 0%, #FFFFFF 100%);
+    background: linear-gradient(to right, #54DFDF 0%, #FFFFFF 100%);
+    height: 100%; width: 100%; background-color: #54DFDF; grid-area: 1 / 1 / 6 / 2; }
+.containe-child2-body { height: 100%; width: 100%; background-color: transparent; grid-area: 1 / 2 / 2 / 6; }
+.containe-child3-body { height: 100%; width: 100%; background-color: transparent; grid-area: 2 / 2 / 6 / 6; }
+
+/***************************/
+
+/*  Contenedor body */
+.containe-parent-body2 {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    grid-template-rows: auto;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    
+    height: 100%;
+    width: 100%;
+    
+}
+
+.containe-child1-body2 {
+    height: 100%;
+    width: 100%;
+    
+    background: #54DFDF;
+    background: -moz-linear-gradient(left, #54DFDF 0%, #FFFFFF 100%);
+    background: -webkit-linear-gradient(left, #54DFDF 0%, #FFFFFF 100%);
+    background: linear-gradient(to right, #54DFDF 0%, #FFFFFF 100%);
+}
+
+.containe-child2-body2 {
+    height: 100%;
+    width: 100%;
+    
+    background-color: transparent;
+}
+
+.flexCenter{
+}
+/***************************/
+
+
+/* Contenedor form1 */
+.containe-parent-form1 {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    
+    
+    justify-items: right;
+    align-items: center;
+    margin: 10px;
+}
+/***************************/
+
+
+
+.parent {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: 100px repeat(4, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    padding: 10px;
+    
+        
+    justify-items: center;
+    align-items: center;
+}
+
+.div1 { grid-area: 1 / 1 / 3 / 4; }
+.div2 { grid-area: 1 / 4 / 3 / 6; }
+.div3 { grid-area: 3 / 1 / 6 / 4; }
+.div4 { grid-area: 3 / 4 / 6 / 6; }
+
+
+
+/* Contenedor de registro */
+.formRegistro {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  gap: 10px 10px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    ". text text text ."
+    ". text2 text2 text2 ."
+    ". usuariotext usuariotf . ."
+    ". passtxt passtf . ."
+    ". . passbtn limpiar ."
+    ". alerttxt alerttxt alerttxt ."
+    ". registrotxt registrotxt registrobtn .";
+}
+
+.text {
+
+  justify-self: center;
+  align-self: center;
+  grid-area: text;
+}
+
+.text2 {
+
+  justify-self: center;
+  align-self: center;
+  grid-area: text2;
+}
+
+.usuariotext {
+
+  justify-self: end;
+  align-self: center;
+  grid-area: usuariotext;
+}
+
+.usuariotf {
+
+  justify-self: start;
+  align-self: center;
+  grid-area: usuariotf;
+}
+
+.passtxt {
+
+  justify-self: end;
+  align-self: center;
+  grid-area: passtxt;
+}
+
+.passtf {
+
+  justify-self: start;
+  align-self: center;
+  grid-area: passtf;
+}
+
+.passbtn {
+    
+  justify-self: start;
+  align-self: center;
+  grid-area: passbtn;
+}
+
+.alerttxt {
+
+  justify-self: center;
+  align-self: center;
+  grid-area: alerttxt;
+}
+
+.registrotxt {
+  justify-self: end;
+  align-self: center;
+  grid-area: registrotxt;
+}
+
+.limpiar {
+
+  justify-self: start;
+  align-self: center;
+  grid-area: limpiar;
+}
+
+.registrobtn {
+  justify-self: start;
+  align-self: center;
+  grid-area: registrobtn;
+}
+/***************************/

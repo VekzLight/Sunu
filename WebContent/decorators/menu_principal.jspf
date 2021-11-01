@@ -1,0 +1,24 @@
+<!-- 
+*************************************************
+* DNA System                                    *
+* Por imposible que parezca ¡Tiene Solución!    *
+*                                               *
+* José Enrique García Ramírez        2163033941 *
+* Tania Guadalupe Zárate Chávez      2173075371 *
+* Christopher Yael Meneses Martínez  2152001568 *
+* Hurtado Avilés Gabriel             2172000781 *
+*                                               *
+* Taller de desarrollo de aplicaciónes web      *
+* Hugo Pablo Leyva                              *
+* 13/Agosto/2021                                *
+*************************************************
+-->
+
+<div class="container-parent-menu-principal">
+    <div class="container-btn-menu-principal" onclick="location.href='index.jsp'"> <p class="link-menu" > Principal</p></div>
+    <div class="container-btn-menu-principal" onclick="location.href='ProductoSelectForm'"> <p class="link-menu" href="ProductoSelectForm"> Nuestros Productos</p></div>
+    <div class="container-btn-menu-principal" onclick="location.href='mision.jsp'"> <p class="link-menu" > Misión</p></div>
+    <div class="container-btn-menu-principal" onclick="location.href='vision.jsp'"> <p class="link-menu" > Visión</p></div>
+    <div class="container-btn-menu-principal" onclick="location.href='casos_de_exito.jsp'"> <p class="link-menu" > Casos de exito</p></div>
+    <div class="container-btn-menu-principal" onclick="location.href='contacto.jsp'"> <p class="link-menu" > Contactanos</p> </div>
+</div>
