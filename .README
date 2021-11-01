@@ -1,0 +1,22 @@
+Este proyecto corre sobre un servidor tomcat 7 y puede ser abierto con el ide eclipse. 
+Cuando se vincule con este servidor se debera insertar la siguientes lineas en los siguientes archivos de la carpeta Server. 
+
+---------------
+context.xml
+---------------
+<Resource   name="jdbc/TestDS"
+            auth="Container" type="javax.sql.DataSource"
+            maxActive="100" maxIdle="30" maxWait="10000"
+            username="sunudev" password="Inf13rn0311530"
+            driveClassName="com.mysql.cj.jdbc.Driver"
+            url="jdbc:mysql://localhost:3306/sunudb?autoReconnect=true" />
+---------------
+
+---------------
+server.xml
+---------------
+<Context    docBase="sunu"  path="/sunu" 
+            reloadable="true" 
+            source="org.eclipse.jst.jee.server:sunu">
+</Context>
+---------------
